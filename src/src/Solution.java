@@ -1,5 +1,5 @@
 /**
- * The Solution class provides a method to count the number of distinct subsequences
+ * The Solution class provides methods to count the number of distinct subsequences
  * of a string s that equal another string t using dynamic programming.
  */
 public class Solution {
@@ -14,14 +14,36 @@ public class Solution {
     public int numDistinct(String s, String t) {
         int m = s.length();
         int n = t.length();
+        int[][] dp = initializeDP(m, n);
+        fillDPTable(s, t, dp, m, n);
+        return dp[m][n];
+    }
+
+    /**
+     * Initializes the dp array and sets the base cases.
+     *
+     * @param m length of string s
+     * @param n length of string t
+     * @return initialized dp array
+     */
+    private int[][] initializeDP(int m, int n) {
         int[][] dp = new int[m + 1][n + 1];
-
-        // Initialize the dp array: forming an empty t from any s is always 1 way (by deleting all characters)
         for (int i = 0; i <= m; i++) {
-            dp[i][0] = 1;
+            dp[i][0] = 1; // An empty t can always be formed from s by deleting all characters
         }
+        return dp;
+    }
 
-        // Fill the dp array using bottom-up dynamic programming
+    /**
+     * Fills the dp table using bottom-up dynamic programming.
+     *
+     * @param s the source string
+     * @param t the target string
+     * @param dp the dp array
+     * @param m length of string s
+     * @param n length of string t
+     */
+    private void fillDPTable(String s, String t, int[][] dp, int m, int n) {
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (s.charAt(i - 1) == t.charAt(j - 1)) {
@@ -31,7 +53,5 @@ public class Solution {
                 }
             }
         }
-
-        return dp[m][n];
     }
 }
