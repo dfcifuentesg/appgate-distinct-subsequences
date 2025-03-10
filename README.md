@@ -51,7 +51,7 @@ The solution uses dynamic programming. The core idea is to build a 2D array `dp`
    ```
 2. Navigate to the project directory:
    ```bash
-   cd distinct-subsequences
+   cd appgate-distinct-subsequences
    ```
 3. Compile and run the program:
    ```bash
