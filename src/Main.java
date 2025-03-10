@@ -15,7 +15,7 @@ public class Main {
 
         logger.info("Source: " + source + ", Target: " + target);
 
-        Solution solution = new Solution();
+        DistinctSubsequences solution = new DistinctSubsequences();
         int result = solution.countDistinctSubsequences(source, target);
 
         logger.info("Number of distinct subsequences: " + result);
