@@ -1,4 +1,6 @@
-    import java.util.logging.Logger;
+package org.appgate;
+
+import java.util.logging.Logger;
 
     /**
      * The DistinctSubsequences class provides methods to count the number of distinct subsequences

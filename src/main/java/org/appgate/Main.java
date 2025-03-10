@@ -1,3 +1,5 @@
+package org.appgate;
+
 import java.util.logging.Logger;
 
 /**
