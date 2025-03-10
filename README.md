@@ -53,8 +53,15 @@ The solution uses dynamic programming. The core idea is to build a 2D array `dp`
    ```bash
    cd appgate-distinct-subsequences
    ```
-3. Compile and run the program:
+3. Build the project using Maven:
    ```bash
-   javac Solution.java
-   java Solution
+   mvn clean compile
+   ```
+4. Run the program:
+   ```bash
+   mvn exec:java -Dexec.mainClass="Main"
+   ```
+5. To run tests:
+   ```bash
+   mvn test
    ```
