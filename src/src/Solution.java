@@ -1,55 +1,55 @@
 /**
  * The Solution class provides methods to count the number of distinct subsequences
- * of a string s that equal another string t using dynamic programming.
+ * of a source string that match a target string using dynamic programming.
  */
 public class Solution {
 
     /**
-     * Calculates the number of distinct subsequences of s which equal t.
+     * Calculates the number of distinct subsequences of the source string that match the target string.
      *
-     * @param s the source string
-     * @param t the target string
+     * @param source the source string (s)
+     * @param target the target string (t)
      * @return the number of distinct subsequences
      */
-    public int numDistinct(String s, String t) {
-        int m = s.length();
-        int n = t.length();
-        int[][] dp = initializeDP(m, n);
-        fillDPTable(s, t, dp, m, n);
-        return dp[m][n];
+    public int numDistinct(String source, String target) {
+        int sourceLength = source.length();
+        int targetLength = target.length();
+        int[][] subsequenceCount = initializeSubsequenceCount(sourceLength, targetLength);
+        fillSubsequenceCountTable(source, target, subsequenceCount, sourceLength, targetLength);
+        return subsequenceCount[sourceLength][targetLength];
     }
 
     /**
-     * Initializes the dp array and sets the base cases.
+     * Initializes the subsequence count table with base cases.
      *
-     * @param m length of string s
-     * @param n length of string t
-     * @return initialized dp array
+     * @param sourceLength the length of the source string
+     * @param targetLength the length of the target string
+     * @return initialized subsequence count table
      */
-    private int[][] initializeDP(int m, int n) {
-        int[][] dp = new int[m + 1][n + 1];
-        for (int i = 0; i <= m; i++) {
-            dp[i][0] = 1; // An empty t can always be formed from s by deleting all characters
+    private int[][] initializeSubsequenceCount(int sourceLength, int targetLength) {
+        int[][] subsequenceCount = new int[sourceLength + 1][targetLength + 1];
+        for (int i = 0; i <= sourceLength; i++) {
+            subsequenceCount[i][0] = 1; // An empty target can always be formed by deleting all characters from source
         }
-        return dp;
+        return subsequenceCount;
     }
 
     /**
-     * Fills the dp table using bottom-up dynamic programming.
+     * Fills the subsequence count table using dynamic programming.
      *
-     * @param s the source string
-     * @param t the target string
-     * @param dp the dp array
-     * @param m length of string s
-     * @param n length of string t
+     * @param source the source string
+     * @param target the target string
+     * @param subsequenceCount the dp table
+     * @param sourceLength the length of the source string
+     * @param targetLength the length of the target string
      */
-    private void fillDPTable(String s, String t, int[][] dp, int m, int n) {
-        for (int i = 1; i <= m; i++) {
-            for (int j = 1; j <= n; j++) {
-                if (s.charAt(i - 1) == t.charAt(j - 1)) {
-                    dp[i][j] = dp[i - 1][j - 1] + dp[i - 1][j]; // include or exclude current char
+    private void fillSubsequenceCountTable(String source, String target, int[][] subsequenceCount, int sourceLength, int targetLength) {
+        for (int i = 1; i <= sourceLength; i++) {
+            for (int j = 1; j <= targetLength; j++) {
+                if (source.charAt(i - 1) == target.charAt(j - 1)) {
+                    subsequenceCount[i][j] = subsequenceCount[i - 1][j - 1] + subsequenceCount[i - 1][j]; // include or exclude current char
                 } else {
-                    dp[i][j] = dp[i - 1][j]; // exclude current char
+                    subsequenceCount[i][j] = subsequenceCount[i - 1][j]; // exclude current char
                 }
             }
         }
